@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Karakana Ledger</title>
+<meta name="theme-color" content="#1F2D3D">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <span class="topbar-title">KARAKANA <span class="accent">LEDGER</span></span>
+  <span id="offline-dot" class="dot" title="Hali ya mtandao"></span>
+</header>
+
+<main id="view-home" class="view">
+
+  <section class="gauge-card">
+    <div class="gauge-wrap">
+      <svg viewBox="0 0 200 200" class="gauge-svg">
+        <circle cx="100" cy="100" r="88" class="gauge-ring-bg"/>
+        <circle id="gauge-arc" cx="100" cy="100" r="88" class="gauge-ring-fg"/>
+      </svg>
+      <div class="gauge-center">
+        <span class="gauge-label">LEO</span>
+        <span id="gauge-amount" class="gauge-amount">0</span>
+        <span class="gauge-currency">TSH</span>
+      </div>
+    </div>
+    <div class="gauge-legend">
+      <div class="legend-item"><span class="swatch swatch-in"></span>Mapato <b id="today-in">0</b></div>
+      <div class="legend-item"><span class="swatch swatch-out"></span>Matumizi <b id="today-out">0</b></div>
+    </div>
+  </section>
+
+  <section class="big-actions">
+    <button id="btn-add-in" class="action-btn action-in">
+      <span class="action-icon">+</span>
+      <span>ONGEZA MAPATO</span>
+    </button>
+    <button id="btn-add-out" class="action-btn action-out">
+      <span class="action-icon">&minus;</span>
+      <span>ONGEZA MATUMIZI</span>
+    </button>
+  </section>
+
+  <section class="history">
+    <h2>Leo &mdash; Historia</h2>
+    <ul id="today-list" class="entry-list">
+      <li class="empty-state">Hakuna kumbukumbu leo bado.<br>Bofya kitufe hapo juu kuanza.</li>
+    </ul>
+  </section>
+
+</main>
+
+<main id="view-report" class="view hidden">
+  <h2 class="page-title">Ripoti</h2>
+  <div class="range-tabs">
+    <button class="range-tab active" data-range="7">Wiki</button>
+    <button class="range-tab" data-range="30">Mwezi</button>
+    <button class="range-tab" data-range="all">Yote</button>
+  </div>
+  <section class="report-summary">
+    <div class="report-stat report-in">
+      <span class="report-stat-label">Mapato</span>
+      <span id="report-in" class="report-stat-value">0</span>
+    </div>
+    <div class="report-stat report-out">
+      <span class="report-stat-label">Matumizi</span>
+      <span id="report-out" class="report-stat-value">0</span>
+    </div>
+    <div class="report-stat report-net">
+      <span class="report-stat-label">Faida</span>
+      <span id="report-net" class="report-stat-value">0</span>
+    </div>
+  </section>
+  <h3 class="section-sub">Kwa Aina (Matumizi)</h3>
+  <ul id="category-breakdown" class="category-list"></ul>
+  <h3 class="section-sub">Historia Kamili</h3>
+  <ul id="full-list" class="entry-list"></ul>
+</main>
+
+<main id="view-settings" class="view hidden">
+  <h2 class="page-title">Mipangilio</h2>
+  <div class="settings-block">
+    <p class="settings-hint">Data yote iko kwenye simu hii tu. Hakuna intaneti inayohitajika.</p>
+    <button id="btn-export" class="settings-btn">Hifadhi Nakala (Export CSV)</button>
+    <button id="btn-clear" class="settings-btn settings-btn-danger">Futa Data Yote</button>
+  </div>
+  <p class="version-tag">Karakana Ledger v1.0</p>
+</main>
+
+<nav class="bottombar">
+  <button class="nav-btn active" data-view="home">
+    <span class="nav-icon">◎</span><span>Leo</span>
+  </button>
+  <button class="nav-btn" data-view="report">
+    <span class="nav-icon">▤</span><span>Ripoti</span>
+  </button>
+  <button class="nav-btn" data-view="settings">
+    <span class="nav-icon">⚙</span><span>Mipangilio</span>
+  </button>
+</nav>
+
+<div id="entry-modal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="modal-title">Ongeza Mapato</h3>
+      <button id="modal-close" class="modal-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <label class="field-label">Kiasi (TSH)</label>
+      <input id="input-amount" type="number" inputmode="numeric" placeholder="0" class="amount-input" autofocus>
+
+      <label class="field-label">Aina</label>
+      <div id="category-grid" class="category-grid"></div>
+
+      <label class="field-label">Maelezo (hiari)</label>
+      <input id="input-note" type="text" placeholder="mfano: Toyota - bawaba" class="note-input">
+    </div>
+    <div class="modal-footer">
+      <button id="btn-save-entry" class="save-btn">HIFADHI</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
